@@ -1,0 +1,29 @@
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+
+metadata:
+  name: cluster-desafio01
+  region: us-east-1
+  version: "1.22"    
+
+vpc:
+  id: "vpc-00d9cb0a0a9b0e44b"
+
+  subnets:
+   
+    public:
+      pub-us-east-1a: 
+        id: "subnet-0e6cfb66782368415"
+      pub-us-east-1c: 
+        id: "subnet-098d336900072fed1"
+     
+
+managedNodeGroups:
+  - name: node-cluster-desafio
+    minSize: 1
+    maxSize: 6
+    desiredCapacity: 4
+    instanceType: t3.micro
+    privateNetworking: false
+    labels: { role: workers }
+    
